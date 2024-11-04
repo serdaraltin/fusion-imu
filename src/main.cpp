@@ -3,63 +3,68 @@
 #include <Arduino.h>
 #include <Wire.h>
 
+#include <SPI.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
 Adafruit_MPU6050 mpu;
 
-void setup(void) {
+#define SCREEN_WIDTH 128 // OLED display width, in pixels
+#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+
+// Declaration for an SSD1306 display connected to I2C (SDA, SCL pins)
+// The pins for I2C are defined by the Wire-library.
+// On an arduino UNO:       A4(SDA), A5(SCL)
+// On an arduino MEGA 2560: 20(SDA), 21(SCL)
+// On an arduino LEONARDO:   2(SDA),  3(SCL), ...
+#define OLED_RESET     4 // Reset pin # (or -1 if sharing Arduino reset pin)
+#define SCREEN_ADDRESS 0x3D ///< See datasheet for Address; 0x3D for 128x64, 0x3C for 128x32
+Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
+
+#define NUMFLAKES     10 // Number of snowflakes in the animation example
+
+#define LOGO_HEIGHT   16
+#define LOGO_WIDTH    16
+static const unsigned char PROGMEM logo_bmp[] =
+        { 0b00000000, 0b11000000,
+          0b00000001, 0b11000000,
+          0b00000001, 0b11000000,
+          0b00000011, 0b11100000,
+          0b11110011, 0b11100000,
+          0b11111110, 0b11111000,
+          0b01111110, 0b11111111,
+          0b00110011, 0b10011111,
+          0b00011111, 0b11111100,
+          0b00001101, 0b01110000,
+          0b00011011, 0b10100000,
+          0b00111111, 0b11100000,
+          0b00111111, 0b11110000,
+          0b01111100, 0b11110000,
+          0b01110000, 0b01110000,
+          0b00000000, 0b00110000 };
+#include "I2CScanner.h"
+#include <Wire.h>
+
+I2CScanner scanner;
+
+//if you use ESP8266-01 with not default SDA and SCL pins, define these 2 lines, else delete them
+#define SDA_PIN 4
+#define SCL_PIN 5
+
+void setup()
+{
+    //uncomment the next line if you use custom sda and scl pins for example with ESP8266-01 (sda = 4, scl = 5)
+    Wire.begin(SDA_PIN, SCL_PIN);
+
     Serial.begin(115200);
-    while (!Serial)
-        delay(10); // will pause Zero, Leonardo, etc until serial console opens
+    while (!Serial) {};
 
-    Serial.println("Adafruit MPU6050 test!");
-
-    // Try to initialize!
-    if (!mpu.begin()) {
-        Serial.println("Failed to find MPU6050 chip");
-        while (1) {
-            delay(10);
-        }
-    }
-    Serial.println("MPU6050 Found!");
-
-    //setup motion detection
-    mpu.setHighPassFilter(MPU6050_HIGHPASS_0_63_HZ);
-    mpu.setMotionDetectionThreshold(1);
-    mpu.setMotionDetectionDuration(20);
-    mpu.setInterruptPinLatch(true);	// Keep it latched.  Will turn off when reinitialized.
-    mpu.setInterruptPinPolarity(true);
-    mpu.setMotionInterrupt(true);
-
-    Serial.println("");
-    delay(100);
+    scanner.Init();
 }
 
-void loop() {
-
-    if(mpu.getMotionInterruptStatus()) {
-        /* Get new sensor events with the readings */
-        sensors_event_t a, g, temp;
-        mpu.getEvent(&a, &g, &temp);
-
-        /* Print out the values */
-        Serial.print("AccelX:");
-        Serial.print(a.acceleration.x);
-        Serial.print(",");
-        Serial.print("AccelY:");
-        Serial.print(a.acceleration.y);
-        Serial.print(",");
-        Serial.print("AccelZ:");
-        Serial.print(a.acceleration.z);
-        Serial.print(", ");
-        Serial.print("GyroX:");
-        Serial.print(g.gyro.x);
-        Serial.print(",");
-        Serial.print("GyroY:");
-        Serial.print(g.gyro.y);
-        Serial.print(",");
-        Serial.print("GyroZ:");
-        Serial.print(g.gyro.z);
-        Serial.println("");
-    }
-
-    delay(10);
+void loop()
+{
+    scanner.Scan();
+    delay(5000);
 }
