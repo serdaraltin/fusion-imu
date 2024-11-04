@@ -1,9 +1,13 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
 
+
 class Lcd{
 public:
     Lcd();
+    ~Lcd() = default;
+    static Lcd *instance;
+    static Lcd *getInstance();
     void testall();
     void testdrawline();      // Draw many lines
     void testdrawrect();      // Draw rectangles (outlines)
@@ -20,3 +24,4 @@ public:
     void testdrawbitmap();    // Draw a small bitmap image
     void testanimate(const uint8_t *bitmap, uint8_t w, uint8_t h) ; // Animate bitmaps
 };
+

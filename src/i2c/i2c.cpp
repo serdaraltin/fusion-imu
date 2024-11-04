@@ -4,11 +4,28 @@
 #include <SPI.h>
 #include <Wire.h>
 #include "i2c.h"
+#include "config/config.h"
+
+I2C* I2C::instance = nullptr;
+
+I2C *I2C::getInstance() {
+    if(instance == nullptr){
+        instance = new I2C();
+    }
+    return instance;
+}
 
 I2C::I2C(){
-    Wire.begin();
-    Serial.println("\nI2C Scanner");
+    if(I2C_AUTO_BEGIN){
+        wireBegin();
+    }
+    Serial.println("\n--> I2C Scanner initialized.");
 }
+
+void I2C::wireBegin() {
+    Wire.begin(SDA_PIN, SCL_PIN);
+}
+
 
 void I2C::scan() {
     byte error, address;
@@ -41,3 +58,4 @@ void I2C::scan() {
         Serial.println("done\n");
     }
 }
+

@@ -7,12 +7,17 @@
 
 
 class I2C {
-
-
 public:
     I2C();
-    void scan();
+    ~I2C() = default;
+    static I2C *instance;
+    static I2C *getInstance();
+
+    static void scan();
+    static void wireBegin();
+
 };
+
 
 
 #endif //FUSION_SENS_I2C_SCANNER_H
