@@ -5,6 +5,9 @@
 #ifndef FUSION_SENS_CONFIG_H
 #define FUSION_SENS_CONFIG_H
 
+#define APP_NAME "Fusion Sens"
+#define LOG_LEVEL Info
+
 //Serial Configuration
 #define BOUD_RATE 115200
 

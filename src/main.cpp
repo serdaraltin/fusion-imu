@@ -3,6 +3,9 @@
 #include "config/config.h"
 #include "display/lcd.h"
 #include "com/i2c.h"
+#include "logger/serial_logger.h"
+
+SerialLogger *serialLogger = SerialLogger::getInstance();
 
 I2C *i2C;
 Lcd *lcd;

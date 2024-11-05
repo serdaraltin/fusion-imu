@@ -5,6 +5,7 @@
 #include <Wire.h>
 #include "i2c.h"
 #include "config/config.h"
+#include "logger/serial_logger.h"
 
 I2C* I2C::instance = nullptr;
 
@@ -19,7 +20,7 @@ I2C::I2C(){
     if(I2C_AUTO_BEGIN){
         wireBegin();
     }
-    Serial.println("\n--> I2C Scanner initialized.");
+    SerialLogger::getInstance()->log(Logger::Info, "I2C Scanner initialized.");
 }
 
 void I2C::wireBegin() {
