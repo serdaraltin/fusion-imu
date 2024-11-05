@@ -1,6 +1,7 @@
 #include "lcd.h"
-#include <SPI.h>
 #include "config/config.h"
+#include "logger/serial_logger.h"
+#include <SPI.h>
 
 #define OLED_RESET (-1) // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
@@ -17,18 +18,21 @@ Lcd *Lcd::getInstance() {
 Lcd::Lcd() {
 
     while (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) {
-        Serial.print("SSD1306 allocation failed\n");
+        SerialLogger::getInstance()->Log.Warning("SSD1306 allocation failed");
+
         delay(2000);
     }
-    Serial.print("--> SSD1306 allocation successful.\n");
+
+    SerialLogger::getInstance()->Log.Info("SSD1306 allocation successful.");
     display.display();
     delay(1000);
     display.clearDisplay();
-
+    display.display();
+    return;
     display.setTextSize(2);
     display.setTextColor(WHITE);
     display.setCursor(10, 0);
-    display.println(F("Welcome"));
+    display.println(F("Oruspularda inecek var"));
     display.display();
 }
 

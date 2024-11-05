@@ -1,16 +1,13 @@
 //
 // Created by Serdar on 5.11.2024.
 //
+
 #include "logger.h"
 #include "config/config.h"
 #include <sstream>
 
 Logger::Logger() {
     level_ = getDefaultLevel();
-}
-
-Logger::Logger(Logger::Level level) : level_(level) {
-    level_ = level;
 }
 
 void Logger::setLevel(Logger::Level level) {
@@ -36,8 +33,43 @@ std::string Logger::getLevelString(Logger::Level level) {
     }
 }
 
-std::string Logger::logSchema(Logger::Level level, const std::string &message) {
+std::optional<std::string> Logger::log2String(Logger::Level level, const std::string &message) {
     std::stringstream output;
-    output << "[" << APP_NAME << "] [" << level << "] " << message;
+    output << "[" << APP_NAME << "] [" << getLevelString(level) << "] " << message;
     return output.str();
 }
+
+void Logger::LogLevel::None(const char *message) {
+    logger_->log2String(Level::None, message);
+}
+void Logger::LogLevel::Error(const char *message) {
+    logger_->log2String(Level::Error, message);
+}
+
+void Logger::LogLevel::Warning(const char *message) {
+    logger_->log2String(Level::Warning, message);
+}
+
+void Logger::LogLevel::Debug(const char *message) {
+    logger_->log2String(Level::Debug, message);
+}
+
+void Logger::LogLevel::Info(const std::string &message) {
+    logger_->log2String(Level::Info, message);
+}
+
+template<typename T, typename... Args>
+void Logger::LogLevel::formatMessage(std::ostringstream &oss, const std::string &formatStr, T &&arg, Args &&... args) const {
+    size_t pos = formatStr.find("{}");
+    if(pos != formatStr.find("{}")){
+        oss << formatStr.substr(0, pos) << arg;
+        formatMessage(oss, formatStr.substr(pos+2), std::forward<Args>(args)...);
+    }
+}
+/*
+template<typename... Args>
+void Logger::LogLevel::Info(const std::string &message, Args &&... args) {
+    std::ostringstream oss;
+    formatMessage(oss, message, std::forward<Args>(args)...);
+    logger_->log2String(Level::Info, oss.str());
+}*/

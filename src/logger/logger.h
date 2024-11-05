@@ -6,6 +6,7 @@
 #define FUSION_SENS_LOGGER_H
 
 #include <string>
+#include <optional>
 
 class Logger{
 private:
@@ -20,8 +21,6 @@ public:
 
     Logger();
 
-    explicit Logger(Level level);
-
     virtual ~Logger() = default;
 
     void setLevel(Level level);
@@ -32,14 +31,34 @@ public:
 
     [[nodiscard]] Level getLevel() const;
 
-    static std::string logSchema(Level level, const std::string &message);
+    virtual std::optional<std::string> log2String(Level level, const std::string &message);
 
-    virtual void log(Level level, const std::string &message) = 0;
+    class LogLevel{
+    private:
+        Logger *logger_;
+
+        template<typename T, typename... Args>
+        void formatMessage(std::ostringstream &oss, const std::string &formatStr, T&& arg, Args&&... args) const;
+
+    public:
+        explicit LogLevel(Logger *logger) : logger_(logger) {}
+
+        void None(const char *message);
+        void Error(const char *message);
+
+        //template<typename... Args>
+        void Info(const std::string &message);//, Args&&...);
+
+        void Warning(const char *message);
+        void Debug(const char *message);
+    };
+
+    LogLevel Log = LogLevel(this);
 
 protected:
     Level level_;
-
 };
+
 
 
 #endif //FUSION_SENS_LOGGER_H

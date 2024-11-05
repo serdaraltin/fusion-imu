@@ -6,7 +6,6 @@
 #include "config/config.h"
 #include <SPI.h>
 #include <string>
-#include <sstream>
 
 SerialLogger *SerialLogger::instance = nullptr;
 
@@ -18,11 +17,10 @@ SerialLogger *SerialLogger::getInstance() {
 
 SerialLogger::SerialLogger() {
     setLevel(LOG_LEVEL);
-    this->log(Info, "Serial Logger initialized.");
 }
 
-void SerialLogger::log(Logger::Level level, const std::string &message) {
-    if(level <= getLevel()){
-        Serial.println(Logger::logSchema(level, message).c_str());
-    }
+std::optional<std::string> SerialLogger::log2String(Logger::Level level, const std::string &message) {
+    std::string output = Logger::log2String(level, message).value();
+    Serial.println(output.c_str());
+    return output;
 }

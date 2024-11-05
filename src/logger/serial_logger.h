@@ -10,15 +10,18 @@
 class SerialLogger : public Logger{
 private:
     static SerialLogger *instance;
-    SerialLogger();
 public:
+
+    SerialLogger();
+
     SerialLogger(const SerialLogger &) = delete;
 
     SerialLogger &operator=(const SerialLogger &) = delete;
 
     static SerialLogger *getInstance();
 
-    void log(Level level, const std::string &message) override;
+    std::optional<std::string> log2String(Level level, const std::string &message) override ;
+
 
 };
 
