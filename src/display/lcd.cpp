@@ -2,7 +2,7 @@
 #include <SPI.h>
 #include "config/config.h"
 
-#define OLED_RESET     -1 // Reset pin # (or -1 if sharing Arduino reset pin)
+#define OLED_RESET (-1) // Reset pin # (or -1 if sharing Arduino reset pin)
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, OLED_RESET);
 
 Lcd *Lcd::instance = nullptr;

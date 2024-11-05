@@ -2,8 +2,7 @@
 #include <Wire.h>
 #include "config/config.h"
 #include "display/lcd.h"
-#include "i2c/i2c.h"
-
+#include "com/i2c.h"
 
 I2C *i2C;
 Lcd *lcd;

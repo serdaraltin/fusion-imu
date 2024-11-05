@@ -13,7 +13,6 @@
 #define SDA_PIN 4
 #define SCL_PIN 5
 
-
 //Lcd configuration
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
