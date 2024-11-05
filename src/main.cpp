@@ -7,14 +7,14 @@
 
 SerialLogger *serialLogger;
 I2C *i2C;
-Lcd *lcd ;
+Lcd *lcd;
 
 void setup() {
     Serial.begin(BOUD_RATE);
-    serialLogger = SerialLogger::getInstance();
-    serialLogger->Log.Info("denem");
-    i2C = I2C::getInstance();
-    lcd= Lcd::getInstance();
+    SerialLogger::getInstance();
+    I2C::getInstance();
+    Lcd::getInstance();
+
 }
 
 void loop() {

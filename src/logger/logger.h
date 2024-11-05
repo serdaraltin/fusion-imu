@@ -10,6 +10,7 @@
 
 class Logger{
 private:
+    static Logger *instance;
 public:
     enum Level{
         None = 0,
@@ -22,6 +23,8 @@ public:
     Logger();
 
     virtual ~Logger() = default;
+
+    static Logger *getInstance();
 
     void setLevel(Level level);
 
@@ -37,20 +40,16 @@ public:
     private:
         Logger *logger_;
 
-        template<typename T, typename... Args>
-        void formatMessage(std::ostringstream &oss, const std::string &formatStr, T&& arg, Args&&... args) const;
-
     public:
         explicit LogLevel(Logger *logger) : logger_(logger) {}
 
-        void None(const char *message);
-        void Error(const char *message);
+        static std::string argsFormat(const char *message, va_list args);
 
-        //template<typename... Args>
-        void Info(const std::string &message);//, Args&&...);
-
-        void Warning(const char *message);
-        void Debug(const char *message);
+        void None(const char *message, ...);
+        void Error(const char *message, ...);
+        void Info(const char *message, ...);
+        void Warning(const char *message, ...);
+        void Debug(const char *message, ...);
     };
 
     LogLevel Log = LogLevel(this);
@@ -58,7 +57,6 @@ public:
 protected:
     Level level_;
 };
-
 
 
 #endif //FUSION_SENS_LOGGER_H

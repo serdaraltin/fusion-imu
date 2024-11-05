@@ -6,8 +6,19 @@
 #include "config/config.h"
 #include <sstream>
 
+Logger *Logger::instance = nullptr;
+//Logger::LogLevel *Log;
+
 Logger::Logger() {
     level_ = getDefaultLevel();
+}
+
+Logger *Logger::getInstance() {
+    if(instance == nullptr) {
+        instance = new Logger();
+        // Log = Logger::LogLevel(instance);
+    }
+    return instance;
 }
 
 void Logger::setLevel(Logger::Level level) {
@@ -39,37 +50,60 @@ std::optional<std::string> Logger::log2String(Logger::Level level, const std::st
     return output.str();
 }
 
-void Logger::LogLevel::None(const char *message) {
+
+std::string Logger::LogLevel::argsFormat(const char *message, va_list args) {
+    char buffer[256];
+    vsniprintf(buffer, sizeof(buffer), message, args);
+    return buffer;
+}
+
+//TODO will fill
+void Logger::LogLevel::None(const char *message, ...) {
+    va_list args;
+    va_start(args, message);
+    std::string formattedMessage = argsFormat(message, args);
+    va_end(args);
+
     logger_->log2String(Level::None, message);
 }
-void Logger::LogLevel::Error(const char *message) {
+
+//TODO will fill
+void Logger::LogLevel::Error(const char *message, ...) {
+    va_list args;
+    va_start(args, message);
+    std::string formattedMessage = argsFormat(message, args);
+    va_end(args);
+
     logger_->log2String(Level::Error, message);
 }
 
-void Logger::LogLevel::Warning(const char *message) {
+//TODO will fill
+void Logger::LogLevel::Warning(const char *message, ...) {
+    va_list args;
+    va_start(args, message);
+    std::string formattedMessage = argsFormat(message, args);
+    va_end(args);
+
     logger_->log2String(Level::Warning, message);
 }
 
-void Logger::LogLevel::Debug(const char *message) {
+//TODO will fill
+void Logger::LogLevel::Debug(const char *message, ...) {
+    va_list args;
+    va_start(args, message);
+    std::string formattedMessage = argsFormat(message, args);
+    va_end(args);
+
     logger_->log2String(Level::Debug, message);
 }
 
-void Logger::LogLevel::Info(const std::string &message) {
-    logger_->log2String(Level::Info, message);
+//TODO will fill
+void Logger::LogLevel::Info(const char *message, ...) {
+    va_list args;
+    va_start(args, message);
+    std::string formattedMessage = argsFormat(message, args);
+    va_end(args);
+
+    logger_->log2String(Level::Info, formattedMessage);
 }
 
-template<typename T, typename... Args>
-void Logger::LogLevel::formatMessage(std::ostringstream &oss, const std::string &formatStr, T &&arg, Args &&... args) const {
-    size_t pos = formatStr.find("{}");
-    if(pos != formatStr.find("{}")){
-        oss << formatStr.substr(0, pos) << arg;
-        formatMessage(oss, formatStr.substr(pos+2), std::forward<Args>(args)...);
-    }
-}
-/*
-template<typename... Args>
-void Logger::LogLevel::Info(const std::string &message, Args &&... args) {
-    std::ostringstream oss;
-    formatMessage(oss, message, std::forward<Args>(args)...);
-    logger_->log2String(Level::Info, oss.str());
-}*/

@@ -24,19 +24,18 @@ I2C::I2C(){
         SerialLogger::getInstance()->Log.Info("I2C Wire auto began.");
         wireBegin();
     }
-
 }
 
 void I2C::wireBegin() {
     Wire.begin(SDA_PIN, SCL_PIN);
-    //SerialLogger::getInstance()->Log.Info("I2C Wire SDA_PIN {}, SCL_PIN {}", SDA_PIN, SCL_PIN);
+    SerialLogger::getInstance()->Log.Info("I2C Wire SDA_PIN %d, SCL_PIN %d %d %s %f", SDA_PIN, SCL_PIN);
 }
 
 
 void I2C::scan() {
     byte error, address;
     int nDevices;
-    //SerialLogger::getInstance()->
+
     Serial.println("Scanning...");
     nDevices = 0;
     for(address = 1; address < 127; address++ ) {

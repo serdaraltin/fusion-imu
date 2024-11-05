@@ -16,12 +16,13 @@ public:
 
     SerialLogger(const SerialLogger &) = delete;
 
+    ~SerialLogger() override = default;
+
     SerialLogger &operator=(const SerialLogger &) = delete;
 
     static SerialLogger *getInstance();
 
     std::optional<std::string> log2String(Level level, const std::string &message) override ;
-
 
 };
 
