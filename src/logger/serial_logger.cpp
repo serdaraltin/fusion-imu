@@ -20,9 +20,6 @@ SerialLogger *SerialLogger::getInstance() {
 SerialLogger::SerialLogger() {
     setLevel(LOG_LEVEL);
     SerialLog.Info("Serial Bound Rate=%d", BOUD_RATE);
-    while (!Serial){
-        delay(10);
-    }
     SerialLog.Info("Serial Logger initialized.");
 }
 

@@ -9,6 +9,9 @@
 
 void initialize(){
     Serial.begin(BOUD_RATE);
+    while (!Serial){
+        delay(10);
+    }
     SerialLogger::getInstance();
     DeviceManager::getInstance();
     I2C::getInstance();
