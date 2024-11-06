@@ -12,7 +12,7 @@
 class Device {
 private:
     std::string name;
-    uint8_t address;
+    uint8_t address = 0x00;
     Device *parentDevice = nullptr;
 public:
     Device()= default;

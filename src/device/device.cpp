@@ -14,6 +14,7 @@ Device::Device(std::string _name, uint8_t _addresses, Device *_parentDevice) :
 name(std::move(_name)), address(_addresses),parentDevice(_parentDevice) {
 
 }
+
 const std::string &Device::getName() const {
     return name;
 }
@@ -47,8 +48,9 @@ std::ostream &operator<<(std::ostream &os, const Device &device) {
 
 Device::operator const char *() const {
     std::ostringstream oss;
-    oss << "Name=" << name
-        ;
+    oss << "Name=" << name <<
+        "Address=" << ConvertI->int2Hex(address).c_str() <<
+        "Parent Address="<< ConvertI->int2Hex(parentDevice->address);
     return oss.str().c_str();
 }
 
