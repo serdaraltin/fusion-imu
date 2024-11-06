@@ -22,7 +22,7 @@ void setup() {
     initialize();
     I2CI->scan();
     for(const Device& device : DeviceManagerI->getDeviceList()){
-        SerialLog.Info(device.getName().c_str());
+        SerialLog.Info(device);
     }
 }
 
