@@ -7,23 +7,17 @@
 #include "sensor/imu.h"
 #include "device/device_manager.h"
 
-
-
-void initialze(){
+void initialize(){
     Serial.begin(BOUD_RATE);
-    SerialLog.Info("Serial Bound Rate=%d", BOUD_RATE);
-    while (!Serial){
-        delay(10);
-    }
-    SerialLog.Info("Serial initialized.");
-    I2CI->scan();
-    LcdI;
-    IMUI;
-    DeviceManagerI;
+    SerialLogger::getInstance();
+    DeviceManager::getInstance();
+    I2C::getInstance();
+    Lcd::getInstance();
+    IMU::getInstance();
 }
 
 void setup() {
-    initialze();
+    initialize();
 }
 
 void loop() {
