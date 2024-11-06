@@ -2,7 +2,7 @@
 // Created by Serdar on 5.11.2024.
 //
 
-#include "logger.h"
+#include "logger/logger.h"
 #include "config/config.h"
 #include <sstream>
 
@@ -64,7 +64,7 @@ void Logger::LogLevel::None(const char *message, ...) {
     std::string formattedMessage = argsFormat(message, args);
     va_end(args);
 
-    logger_->log2String(Level::None, message);
+    logger_->log2String(Level::None, formattedMessage);
 }
 
 //TODO will fill
@@ -74,7 +74,7 @@ void Logger::LogLevel::Error(const char *message, ...) {
     std::string formattedMessage = argsFormat(message, args);
     va_end(args);
 
-    logger_->log2String(Level::Error, message);
+    logger_->log2String(Level::Error, formattedMessage);
 }
 
 //TODO will fill
@@ -84,7 +84,7 @@ void Logger::LogLevel::Warning(const char *message, ...) {
     std::string formattedMessage = argsFormat(message, args);
     va_end(args);
 
-    logger_->log2String(Level::Warning, message);
+    logger_->log2String(Level::Warning, formattedMessage);
 }
 
 //TODO will fill
@@ -94,7 +94,7 @@ void Logger::LogLevel::Debug(const char *message, ...) {
     std::string formattedMessage = argsFormat(message, args);
     va_end(args);
 
-    logger_->log2String(Level::Debug, message);
+    logger_->log2String(Level::Debug, formattedMessage);
 }
 
 //TODO will fill

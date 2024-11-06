@@ -5,8 +5,10 @@
 #ifndef FUSION_SENS_I2C_SCANNER_H
 #define FUSION_SENS_I2C_SCANNER_H
 
+#define I2CI I2C::getInstance()
 
 class I2C {
+
 public:
     I2C();
     ~I2C() = default;
@@ -15,7 +17,6 @@ public:
 
     static void scan();
     static void wireBegin();
-
 };
 
 

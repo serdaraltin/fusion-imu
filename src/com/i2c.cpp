@@ -4,7 +4,7 @@
 
 #include <SPI.h>
 #include <Wire.h>
-#include "i2c.h"
+#include "com/i2c.h"
 #include "config/config.h"
 #include "logger/serial_logger.h"
 
@@ -19,23 +19,22 @@ I2C *I2C::getInstance() {
 }
 
 I2C::I2C(){
-    SerialLogger::getInstance()->Log.Info("I2C Scanner initialized.");
+    SerialLog.Info("I2C Scanner initialized.");
     if(I2C_AUTO_BEGIN){
-        SerialLogger::getInstance()->Log.Info("I2C Wire auto began.");
+        SerialLog.Info("I2C Wire auto began.");
         wireBegin();
     }
 }
 
 void I2C::wireBegin() {
     Wire.begin(SDA_PIN, SCL_PIN);
-    SerialLogger::getInstance()->Log.Info("I2C Wire SDA_PIN %d, SCL_PIN %d %d %s %f", SDA_PIN, SCL_PIN);
+    SerialLog.Info("I2C Wire SDA_PIN=%d, SCL_PIN=%d", SDA_PIN, SCL_PIN);
 }
 
 
 void I2C::scan() {
     byte error, address;
     int nDevices;
-
     Serial.println("Scanning...");
     nDevices = 0;
     for(address = 1; address < 127; address++ ) {

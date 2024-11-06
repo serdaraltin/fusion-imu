@@ -2,10 +2,12 @@
 // Created by Serdar on 5.11.2024.
 //
 
-#include "serial_logger.h"
+#include "logger/serial_logger.h"
 #include "config/config.h"
 #include <SPI.h>
 #include <string>
+
+
 
 SerialLogger *SerialLogger::instance = nullptr;
 

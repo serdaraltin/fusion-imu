@@ -4,17 +4,18 @@
 #include "display/lcd.h"
 #include "com/i2c.h"
 #include "logger/serial_logger.h"
+#include "sensor/imu.h"
 
-SerialLogger *serialLogger;
-I2C *i2C;
-Lcd *lcd;
 
 void setup() {
     Serial.begin(BOUD_RATE);
-    SerialLogger::getInstance();
-    I2C::getInstance();
-    Lcd::getInstance();
-
+    while (!Serial){
+        delay(10);
+    }
+    SerialLog.Info("Setup");
+    I2CI->scan();
+    LcdI;
+    IMUI;
 }
 
 void loop() {

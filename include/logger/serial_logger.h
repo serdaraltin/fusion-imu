@@ -7,6 +7,9 @@
 
 #include "logger.h"
 
+#define SerialLoggerI SerialLogger::getInstance()
+#define SerialLog SerialLogger::getInstance()->Log
+
 class SerialLogger : public Logger{
 private:
     static SerialLogger *instance;

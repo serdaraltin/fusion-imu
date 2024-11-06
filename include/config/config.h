@@ -12,12 +12,20 @@
 #define BOUD_RATE 115200
 
 //I2C Configuration
-#define I2C_AUTO_BEGIN 1
+#define I2C_AUTO_BEGIN true
 #define SDA_PIN 4
 #define SCL_PIN 5
 
-//Lcd configuration
+//Lcd Configuration
+#define SCREEN_I2C 0x3C
+#define OLED_RESET -1
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
+#define BOOT_LOGO true
+
+//Sensor Configuration
+#define SENSOR_NAME "MPU6050"
+#define FIND_REPEAT true
+
 
 #endif //FUSION_SENS_CONFIG_H
