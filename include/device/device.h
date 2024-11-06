@@ -7,6 +7,7 @@
 
 #include <string>
 #include <ostream>
+#include <sstream>
 
 class Device {
 private:
@@ -35,9 +36,13 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Device &device);
 
-     operator const char*() const {
-            return name.c_str();
-     }
+    operator const char*() const {
+        std::ostringstream oss;
+        oss << "Name=" << name <<
+        "Address=" << address <<
+        "Parent Address="<< parentDevice->getAddress();
+        return oss.str().c_str();
+    }
 };
 
 
