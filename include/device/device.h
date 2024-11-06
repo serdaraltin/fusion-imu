@@ -37,10 +37,10 @@ public:
     friend std::ostream &operator<<(std::ostream &os, const Device &device);
 
     operator const char*() const {
-        std::ostringstream oss;
+       /* std::ostringstream oss;
         oss << "Name=" << name <<
         "Address=" << address <<
-        "Parent Address="<< parentDevice->getAddress();
+        "Parent Address="<< parentDevice->getAddress();  */
         return "asd"    ;
     }
 };
