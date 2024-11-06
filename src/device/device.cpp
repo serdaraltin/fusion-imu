@@ -3,6 +3,7 @@
 //
 
 #include "device/device.h"
+#include "convert/convert.h"
 #include <utility>
 
 Device::Device(std::string _name, uint8_t _addresses) :
@@ -13,8 +14,6 @@ Device::Device(std::string _name, uint8_t _addresses, Device *_parentDevice) :
 name(std::move(_name)), address(_addresses),parentDevice(_parentDevice) {
 
 }
-
-
 const std::string &Device::getName() const {
     return name;
 }
@@ -45,6 +44,15 @@ std::ostream &operator<<(std::ostream &os, const Device &device) {
     << " Parent Device: " << device.parentDevice;
     return os;
 }
+
+Device::operator const char *() const {
+    std::ostringstream oss;
+    oss << "Name=" << name <<
+        "Address=" << ConvertI->int2Hex(address) <<
+        "Parent Address="<< ConvertI->int2Hex(parentDevice->address);
+    return oss.str().c_str();
+}
+
 
 
 

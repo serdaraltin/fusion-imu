@@ -9,7 +9,7 @@
 
 #include <SPI.h>
 #include <Wire.h>
-#include <iomanip>
+#include "convert/convert.h"
 
 
 I2C* I2C::instance = nullptr;
@@ -34,26 +34,13 @@ void I2C::wireBegin() {
     SerialLog.Info("I2C Wire SDA_PIN=%d SCL_PIN=%d", SDA_PIN, SCL_PIN);
 }
 
-std::string I2C::int2Hex(int _address) {
-    std::stringstream ss;
-    ss << std::hex << _address;
-    return "0x"+ss.str();
-}
-
-int I2C::hex2Int(uint8_t _address) {
-    std::stringstream ss;
-    ss << std::hex << _address;
-    int address;
-    ss >> address;
-    return address;
-}
 
 void I2C::scan() {
     byte error, address;
     int nDevices = 0;
     SerialLog.Info("I2C devices scanning...");
     for(address = 1; address < 127; address++ ) {
-        std::string hex = int2Hex(address);
+        std::string hex = ConvertI->int2Hex(address);
         error = checkDevice(address);
         if (error == 0) {
             SerialLog.Info("I2C device found at address %s", hex.c_str());
