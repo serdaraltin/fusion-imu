@@ -48,8 +48,8 @@ std::ostream &operator<<(std::ostream &os, const Device &device) {
 
 Device::operator const char *() const {
     std::ostringstream oss;
-    oss << "Name=" << name ;
-    //<< "Address=" << ConvertI->int2Hex(address).c_str()
+    oss << "Name=" << name 
+    << "Address=" << ConvertI->int2Hex(address).c_str();
     //<< "Parent Address="<< (parentDevice) ? ConvertI->int2Hex(parentDevice->address) : "None";
     return oss.str().c_str();
 }
