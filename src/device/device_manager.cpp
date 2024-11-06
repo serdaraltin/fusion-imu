@@ -4,8 +4,6 @@
 
 #include "device/device_manager.h"
 
-
-
 DeviceManager *DeviceManager::instance = nullptr;
 
 DeviceManager *DeviceManager::getInstance() {
@@ -14,7 +12,8 @@ DeviceManager *DeviceManager::getInstance() {
     return instance;
 }
 
-DeviceManager::DeviceManager(const std::vector<Device> &deviceList) : deviceList(deviceList) {
+DeviceManager::DeviceManager(const std::vector<Device> &_deviceList) :
+deviceList(_deviceList) {
 
 }
 
@@ -25,8 +24,8 @@ const std::vector<Device> &DeviceManager::getDeviceList() const {
     return deviceList;
 }
 
-void DeviceManager::setDeviceList(const std::vector<Device> &deviceList) {
-    DeviceManager::deviceList = deviceList;
+void DeviceManager::setDeviceList(const std::vector<Device> &_deviceList) {
+    DeviceManager::deviceList = _deviceList;
 }
 
 bool DeviceManager::addDevice(const Device& _device) {

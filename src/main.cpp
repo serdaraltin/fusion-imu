@@ -18,6 +18,7 @@ void initialize(){
 
 void setup() {
     initialize();
+    I2CI->scan();
 }
 
 void loop() {

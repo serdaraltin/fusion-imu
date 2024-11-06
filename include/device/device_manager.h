@@ -26,6 +26,7 @@ public:
     void setDeviceList(const std::vector<Device> &deviceList);
 
     bool addDevice(const Device& device);
+
 };
 
 
