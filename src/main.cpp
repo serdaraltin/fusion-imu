@@ -5,8 +5,11 @@
 #include "com/i2c.h"
 #include "logger/serial_logger.h"
 #include "sensor/imu.h"
+#include "device/device_manager.h"
 
-void setup() {
+
+
+void initialze(){
     Serial.begin(BOUD_RATE);
     SerialLog.Info("Serial Bound Rate=%d", BOUD_RATE);
     while (!Serial){
@@ -16,6 +19,11 @@ void setup() {
     I2CI->scan();
     LcdI;
     IMUI;
+    DeviceManagerI;
+}
+
+void setup() {
+    initialze();
 }
 
 void loop() {

@@ -3,7 +3,6 @@
 //
 
 #include "device/device.h"
-
 #include <utility>
 
 Device::Device(std::string _name, uint8_t _addresses) :
@@ -12,11 +11,6 @@ name(std::move(_name)), address(_addresses) {
 
 Device::Device(std::string _name, uint8_t _addresses, Device *_parentDevice) :
 name(std::move(_name)), address(_addresses),parentDevice(_parentDevice) {
-
-}
-
-Device::Device(std::string _name, uint8_t _address, uint8_t _parentAddress):
-name(std::move(_name)), address(_address) {
 
 }
 
@@ -44,6 +38,7 @@ Device *Device::getParentDevice() const {
 void Device::setParentDevice(Device *_parentDevice) {
     Device::parentDevice = _parentDevice;
 }
+
 
 
 

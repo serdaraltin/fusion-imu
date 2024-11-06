@@ -10,11 +10,12 @@
 #define I2CI I2C::getInstance()
 
 class I2C {
-
+private:
+    static I2C *instance;
 public:
     I2C();
     ~I2C() = default;
-    static I2C *instance;
+
     static I2C *getInstance();
     static void scan();
     static void wireBegin();

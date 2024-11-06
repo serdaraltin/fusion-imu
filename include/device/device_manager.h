@@ -8,11 +8,24 @@
 #include "device.h"
 #include <vector>
 
+#define DeviceManagerI DeviceManager::getInstance()
+
 class DeviceManager {
 private:
+    static DeviceManager *instance;
     std::vector<Device> deviceList;
 public:
+    DeviceManager();
 
+    explicit DeviceManager(const std::vector<Device> &deviceList);
+
+    static DeviceManager *getInstance();
+
+    [[nodiscard]] const std::vector<Device> &getDeviceList() const;
+
+    void setDeviceList(const std::vector<Device> &deviceList);
+
+    bool addDevice(const Device& device);
 };
 
 

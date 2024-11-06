@@ -20,17 +20,15 @@ public:
 
     Device(std::string name, uint8_t addresses, Device *parentDevice);
 
-    Device(std::string name, uint8_t addresses, uint8_t parentAddress);
-
     [[nodiscard]] const std::string &getName() const;
 
     void setName(const std::string &name);
 
-    uint8_t getAddress() const;
+    [[nodiscard]] uint8_t getAddress() const;
 
     void setAddress(uint8_t addresses);
 
-    Device *getParentDevice() const;
+    [[nodiscard]] Device *getParentDevice() const;
 
     void setParentDevice(Device *parentDevice);
 
