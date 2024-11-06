@@ -7,14 +7,9 @@
 
 #include <vector>
 #include <string>
+#include "device/device.h"
 
-struct SDevice{
-    std::string name;
-    uint8_t address = 0x00;
-    uint8_t parentAddress = 0x00;
-};
-
-static std::vector<SDevice> sDeviceList = {
+static std::vector<Device> sDeviceList = {
         {"MPU6050", 0x68},
         {"BMP180", 0x77, 0x68},
         {"SSD1306", 0x3C}

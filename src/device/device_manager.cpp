@@ -1,4 +1,4 @@
-//
+//DeviceManager::DeviceManager(const std::vector<Device> &deviceList) : deviceList(deviceList) {}
 // Created by Serdar on 6.11.2024.
 //
 
@@ -15,22 +15,13 @@ DeviceManager *DeviceManager::getInstance() {
     return instance;
 }
 
-DeviceManager::DeviceManager(const std::vector<Device> &_deviceList) :
-deviceList(_deviceList) {
-
-}
 
 DeviceManager::DeviceManager() {
-    for (const SDevice &device: sDeviceList) {
-        if (device.parentAddress == 0x00)
-            deviceList.emplace_back(device.name, device.address);
-        if (device.parentAddress != 0x00){
-            SerialLog.Warning(device.name.c_str());
-            deviceList.emplace_back(device.name, device.address, getDevice(device.parentAddress));
-        }
-
-    }
+    //std::copy(sDeviceList.begin(), sDeviceList.end(), deviceList.begin());
 }
+
+DeviceManager::DeviceManager(const std::vector<Device> &deviceList)
+: deviceList(deviceList) {}
 
 const std::vector<Device> &DeviceManager::getDeviceList() const {
     return deviceList;
@@ -53,5 +44,9 @@ Device *DeviceManager::getDevice(const uint8_t _address) {
     }
     return nullptr;
 }
+
+
+
+
 
 
