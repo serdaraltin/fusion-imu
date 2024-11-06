@@ -3,6 +3,7 @@
 //
 
 #include "device/device_manager.h"
+#include "config/device_list.h"
 
 DeviceManager *DeviceManager::instance = nullptr;
 
@@ -17,7 +18,19 @@ deviceList(_deviceList) {
 
 }
 
-DeviceManager::DeviceManager() = default;
+DeviceManager::DeviceManager() {
+    for(const SDevice& device : sDeviceList){
+        if(device.parentAddress != 0x00)
+            deviceList.emplace_back(device.name,device.address);
+        else{
+            deviceList.emplace_back(
+                    device.name,
+                    device.address,
+                    getDevice(device.parentAddress));
+        }
+
+    }
+}
 
 
 const std::vector<Device> &DeviceManager::getDeviceList() const {
@@ -31,6 +44,15 @@ void DeviceManager::setDeviceList(const std::vector<Device> &_deviceList) {
 bool DeviceManager::addDevice(const Device& _device) {
     deviceList.emplace_back(_device);
     return false;
+}
+
+Device *DeviceManager::getDevice(const uint8_t _address) {
+    for(Device &device: deviceList){
+        if(device.getAddress() == _address){
+            return &device;
+        }
+    }
+    return nullptr;
 }
 
 

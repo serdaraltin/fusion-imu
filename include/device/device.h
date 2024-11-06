@@ -6,6 +6,7 @@
 #define FUSION_SENS_DEVICE_H
 
 #include <string>
+#include <ostream>
 
 class Device {
 private:
@@ -32,6 +33,7 @@ public:
 
     void setParentDevice(Device *parentDevice);
 
+    friend std::ostream &operator<<(std::ostream &os, const Device &device);
 };
 
 

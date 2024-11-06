@@ -27,6 +27,8 @@ public:
 
     bool addDevice(const Device& device);
 
+    Device *getDevice(const uint8_t address);
+    
 };
 
 

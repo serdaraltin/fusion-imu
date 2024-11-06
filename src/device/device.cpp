@@ -39,6 +39,14 @@ void Device::setParentDevice(Device *_parentDevice) {
     Device::parentDevice = _parentDevice;
 }
 
+std::ostream &operator<<(std::ostream &os, const Device &device) {
+    os << "Name: " << device.name
+    << " Address: " << device.address
+    << " Parent Device: " << device.parentDevice;
+    return os;
+}
+
+
 
 
 
