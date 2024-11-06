@@ -6,6 +6,7 @@
 #include "logger/serial_logger.h"
 #include "config/config.h"
 #include "com/i2c.h"
+#include "convert/convert.h"
 
 Adafruit_MPU6050 sensor;
 
@@ -22,7 +23,7 @@ IMU::IMU() {
 
     int check = I2CI->checkDevice(SENSOR_I2C);
     SerialLog.Info("I2C Device checked. Device=%s Result=%s",
-                   I2CI->int2Hex(SENSOR_I2C).c_str(), (check == 0) ? "Available" : "Not Found!" );
+                   ConvertI->int2Hex(SENSOR_I2C).c_str(), (check == 0) ? "Available" : "Not Found!" );
 
     if(!sensor.begin()){
         SerialLog.Warning("%s not found !", SENSOR_NAME);
