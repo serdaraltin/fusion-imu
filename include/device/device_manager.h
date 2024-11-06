@@ -9,6 +9,7 @@
 class DeviceManager {
 private:
 public:
+
 };
 
 
