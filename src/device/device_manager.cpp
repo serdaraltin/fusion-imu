@@ -24,10 +24,11 @@ DeviceManager::DeviceManager() {
     for (const SDevice &device: sDeviceList) {
         if (device.parentAddress == 0x00)
             deviceList.emplace_back(device.name, device.address);
-    }
-    for (const SDevice &device: sDeviceList) {
-        if (device.parentAddress != 0x00)
+        if (device.parentAddress != 0x00){
+            SerialLog.Warning(device.name.c_str());
             deviceList.emplace_back(device.name, device.address, getDevice(device.parentAddress));
+        }
+
     }
 }
 
