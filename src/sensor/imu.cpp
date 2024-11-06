@@ -19,9 +19,10 @@ IMU *IMU::getInstance() {
 
 IMU::IMU() {
     SerialLog.Info("%s testing...", SENSOR_NAME);
-    if(I2CI->checkDevice(SENSOR_I2C) != 0){
-        SerialLog.Warning("Device not found %s", SENSOR_I2C);
-    }
+
+    int check = I2CI->checkDevice(SENSOR_I2C);
+    SerialLog.Info("I2C Device checked. Device=%s Result=%s",
+                   I2CI->int2Hex(SENSOR_I2C).c_str(), (check == 0) ? "Available" : "Not Found!" );
 
     if(!sensor.begin()){
         SerialLog.Warning("%s not found !", SENSOR_NAME);

@@ -6,28 +6,12 @@
 
 #include <utility>
 
-
-Device::Device() {
-
-}
-Device::Device(std::string name, uint8_t address) : name(std::move(name)), address(address) {
+Device::Device(std::string name, uint8_t addresses) :
+name(std::move(name)), addresses(addresses) {
 
 }
 
-const std::string &Device::getName() const {
-    return name;
+Device::Device(std::string name, uint8_t addresses, Device *parentDevice) :
+name(std::move(name)), addresses(addresses),parentDevice(parentDevice) {
+
 }
-
-void Device::setName(const std::string &name) {
-    Device::name = name;
-}
-
-uint8_t Device::getAddress() const {
-    return address;
-}
-
-void Device::setAddress(uint8_t address) {
-    Device::address = address;
-}
-
-

@@ -18,15 +18,16 @@
 
 //Lcd Configuration
 #define SCREEN_I2C 0x3C
-#define OLED_RESET -1
+#define OLED_RESET (-1)
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 64
 #define BOOT_LOGO true
 
 //Sensor Configuration
 #define SENSOR_NAME "MPU6050"
-#define FIND_REPEAT true
 #define SENSOR_I2C 0x68
+#define FIND_REPEAT true
+
 
 
 #endif //FUSION_SENS_CONFIG_H

@@ -13,7 +13,7 @@ void setup() {
         delay(10);
     }
     SerialLog.Info("Serial initialized.");
-    I2CI;
+    I2CI->scan();
     LcdI;
     IMUI;
 }

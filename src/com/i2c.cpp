@@ -71,8 +71,6 @@ void I2C::scan() {
 int I2C::checkDevice(int _address) {
     Wire.beginTransmission(_address);
     int result = Wire.endTransmission();
-    SerialLog.Info("I2C Device checked. Device=%s Result=%s",
-                   int2Hex(_address).c_str(), (result == 0) ? "Available" : "Not Found!" );
     return result;
 }
 

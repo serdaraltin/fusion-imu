@@ -10,23 +10,15 @@
 class Device {
 private:
     std::string name;
-    uint8_t address{};
-
+    uint8_t addresses{};
+    Device *parentDevice{};
 public:
-    Device();
-
-    Device(std::string name, uint8_t address);
-
+    Device()= default;
     ~Device() = default;
 
-    [[nodiscard]] const std::string &getName() const;
+    Device(std::string name, uint8_t addresses);
 
-    void setName(const std::string &name);
-
-    [[nodiscard]] uint8_t getAddress() const;
-
-    void setAddress(uint8_t address);
-
+    Device(std::string name, uint8_t addresses, Device *parentDevice);
 
 };
 
