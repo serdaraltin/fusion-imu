@@ -10,20 +10,20 @@
 
 void initialize(){
     Serial.begin(BOUD_RATE);
-    Convert::getInstance();
+    Convert::getInstance();/*
     SerialLogger::getInstance();
     DeviceManager::getInstance();
     I2C::getInstance();
     Lcd::getInstance();
-    IMU::getInstance();
+    IMU::getInstance();*/
 }
 
 void setup() {
     initialize();
-    I2CI->scan();
+    /*I2CI->scan();
     for(const Device& device : DeviceManagerI->getDeviceList()){
         SerialLog.Info(device);
-    }
+    }*/
 }
 
 void loop() {
