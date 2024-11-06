@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# Directory you want to monitor
-WATCH_DIR="."
-
 # Find modified, added, and deleted files
 modified_files=$(git diff --name-only --diff-filter=M)
 added_files=$(git diff --name-only --diff-filter=A)
@@ -13,17 +10,23 @@ commit_message=""
 
 # If there are modified files
 if [ ! -z "$modified_files" ]; then
-    commit_message+="modified: $modified_files"$'\n'
+    for file in $modified_files; do
+        commit_message+="modified: $file"$'\n'
+    done
 fi
 
 # If there are added files
 if [ ! -z "$added_files" ]; then
-    commit_message+="create: $added_files"$'\n'
+    for file in $added_files; do
+        commit_message+="create: $file"$'\n'
+    done
 fi
 
 # If there are deleted files
 if [ ! -z "$deleted_files" ]; then
-    commit_message+="delete: $deleted_files"$'\n'
+    for file in $deleted_files; do
+        commit_message+="delete: $file"$'\n'
+    done
 fi
 
 # If there is any commit message
