@@ -41,7 +41,7 @@ public:
         oss << "Name=" << name <<
         "Address=" << address <<
         "Parent Address="<< parentDevice->getAddress();
-        return oss.str().c_str();
+        return "asd"    ;
     }
 };
 
