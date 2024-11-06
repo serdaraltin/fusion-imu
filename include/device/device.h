@@ -34,8 +34,6 @@ public:
 
     void setParentDevice(Device *parentDevice);
 
-    friend std::ostream &operator<<(std::ostream &os, const Device &device);
-
     operator const char*() const;
 };
 

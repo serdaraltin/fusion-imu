@@ -20,7 +20,6 @@ void initialize(){
 
 void setup() {
     initialize();
-    I2CI->scan();
     for(const Device& device : DeviceManagerI->getDeviceList()){
         SerialLog.Info(device);
     }

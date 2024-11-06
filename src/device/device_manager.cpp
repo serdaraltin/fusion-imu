@@ -4,6 +4,8 @@
 
 #include "device/device_manager.h"
 #include "config/device_list.h"
+#include "logger/serial_logger.h"
+#include "conversion/convert.h"
 
 DeviceManager *DeviceManager::instance = nullptr;
 
@@ -19,19 +21,15 @@ deviceList(_deviceList) {
 }
 
 DeviceManager::DeviceManager() {
-    for(const SDevice& device : sDeviceList){
-        if(device.parentAddress != 0x00)
-            deviceList.emplace_back(device.name,device.address);
-        else{
-            deviceList.emplace_back(
-                    device.name,
-                    device.address,
-                    getDevice(device.parentAddress));
-        }
-
+    for (const SDevice &device: sDeviceList) {
+        if (device.parentAddress == 0x00)
+            deviceList.emplace_back(device.name, device.address);
+    }
+    for (const SDevice &device: sDeviceList) {
+        if (device.parentAddress != 0x00)
+            deviceList.emplace_back(device.name, device.address, getDevice(device.parentAddress));
     }
 }
-
 
 const std::vector<Device> &DeviceManager::getDeviceList() const {
     return deviceList;

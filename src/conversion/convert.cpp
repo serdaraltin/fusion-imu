@@ -7,6 +7,11 @@
 
 Convert* Convert::instance = nullptr;
 
+
+Convert::Convert() {
+
+}
+
 Convert *Convert::getInstance() {
     if(instance == nullptr){
         instance = new Convert();
@@ -28,6 +33,7 @@ int Convert::hex2Int(uint8_t _address) {
     return address;
 }
 
-Convert::Convert() {
+std::string Convert::hex2String(uint8_t _address) {
 
+    return std::string();
 }

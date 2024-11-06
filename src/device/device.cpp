@@ -39,19 +39,11 @@ void Device::setParentDevice(Device *_parentDevice) {
     Device::parentDevice = _parentDevice;
 }
 
-std::ostream &operator<<(std::ostream &os, const Device &device) {
-    os << "Name: " << device.name
-    << " Address: " << device.address
-    << " Parent Device: " << device.parentDevice;
-    return os;
-}
-
 Device::operator const char *() const {
-    std::ostringstream oss;
-    oss << "Name=" << name
-    << " Address=" << ConvertI->int2Hex(address);
-    //<< "Parent Address="<< (parentDevice) ? ConvertI->int2Hex(parentDevice->address) : "None";
-    return oss.str().c_str();
+    char *buffer = new char[255];
+    sprintf(buffer, "Name=%s Address=0x%02X Parent Address=0x%02X",
+            name.c_str(), address, (parentDevice) ? parentDevice->address: 0x00);
+    return buffer;
 }
 
 
