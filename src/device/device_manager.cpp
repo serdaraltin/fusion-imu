@@ -1,4 +1,4 @@
-//DeviceManager::DeviceManager(const std::vector<Device> &deviceList) : deviceList(deviceList) {}
+//
 // Created by Serdar on 6.11.2024.
 //
 
@@ -6,6 +6,7 @@
 #include "config/device_list.h"
 #include "logger/serial_logger.h"
 #include "conversion/convert.h"
+#include <iostream>
 
 DeviceManager *DeviceManager::instance = nullptr;
 
@@ -17,7 +18,7 @@ DeviceManager *DeviceManager::getInstance() {
 
 
 DeviceManager::DeviceManager() {
-    //std::copy(sDeviceList.begin(), sDeviceList.end(), deviceList.begin());
+    deviceList = sDeviceList;
 }
 
 DeviceManager::DeviceManager(const std::vector<Device> &deviceList)

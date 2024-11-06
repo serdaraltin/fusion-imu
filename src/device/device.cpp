@@ -38,10 +38,9 @@ void Device::setParentDevice(uint8_t _parentDevice) {
     Device::parentDevice = _parentDevice;
 }
 
-
 Device::operator const char *() const {
     char *buffer = new char[255];
-    sprintf(buffer, "Name=%s Address=0x%02X Parent Address=0x%02X",
+    sprintf(buffer, "Device properties Name=%s Address=0x%02X Parent Address=0x%02X",
             name.c_str(), address, parentDevice);
     return buffer;
 }

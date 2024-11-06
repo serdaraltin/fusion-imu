@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Threshold for the number of changes to commit/push
-THRESHOLD=50
+THRESHOLD=100
 
 # Counter file path
 COUNTER_FILE=".change_counter"
