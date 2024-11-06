@@ -6,9 +6,11 @@
 #include "logger/serial_logger.h"
 #include "sensor/imu.h"
 #include "device/device_manager.h"
+#include "convert/convert.h"
 
 void initialize(){
     Serial.begin(BOUD_RATE);
+    Convert::getInstance();
     SerialLogger::getInstance();
     DeviceManager::getInstance();
     I2C::getInstance();
