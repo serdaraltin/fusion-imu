@@ -6,20 +6,44 @@
 
 #include <utility>
 
-Device::Device(std::string name, uint8_t addresses) :
-name(std::move(name)), addresses(addresses) {
+Device::Device(std::string _name, uint8_t _addresses) :
+name(std::move(_name)), address(_addresses) {
+}
+
+Device::Device(std::string _name, uint8_t _addresses, Device *_parentDevice) :
+name(std::move(_name)), address(_addresses),parentDevice(_parentDevice) {
 
 }
 
-Device::Device(std::string name, uint8_t addresses, Device *parentDevice) :
-name(std::move(name)), addresses(addresses),parentDevice(parentDevice) {
+Device::Device(std::string _name, uint8_t _address, uint8_t _parentAddress):
+name(std::move(_name)), address(_address) {
 
 }
+
 
 const std::string &Device::getName() const {
     return name;
 }
 
-void Device::setName(const std::string &name) {
-    Device::name = name;
+void Device::setName(const std::string &_name) {
+    Device::name = _name;
 }
+
+uint8_t Device::getAddress() const {
+    return address;
+}
+
+void Device::setAddress(uint8_t _address) {
+    Device::address = _address;
+}
+
+Device *Device::getParentDevice() const {
+    return parentDevice;
+}
+
+void Device::setParentDevice(Device *_parentDevice) {
+    Device::parentDevice = _parentDevice;
+}
+
+
+
