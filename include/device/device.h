@@ -20,7 +20,7 @@ public:
 
     Device(std::string name, uint8_t addresses, Device *parentDevice);
 
-    const std::string &getName() const;
+    [[nodiscard]] const std::string &getName() const;
 
     void setName(const std::string &name);
 
