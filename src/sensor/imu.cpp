@@ -1,10 +1,11 @@
 //
-// Created by main on 6.11.2024.
+// Created by Serdar on 6.11.2024.
 //
 
 #include "sensor/imu.h"
 #include "logger/serial_logger.h"
 #include "config/config.h"
+#include "com/i2c.h"
 
 Adafruit_MPU6050 sensor;
 
@@ -18,6 +19,10 @@ IMU *IMU::getInstance() {
 
 IMU::IMU() {
     SerialLog.Info("%s testing...", SENSOR_NAME);
+    if(I2CI->checkDevice(SENSOR_I2C) != 0){
+        SerialLog.Warning("Device not found %s", SENSOR_I2C);
+    }
+
     if(!sensor.begin()){
         SerialLog.Warning("%s not found !", SENSOR_NAME);
         while(FIND_REPEAT){
@@ -33,7 +38,5 @@ IMU::IMU() {
     sensor.setMotionInterrupt(true);
 
     SerialLog.Info("%s initialized.", SENSOR_NAME);
-
-
 }
 

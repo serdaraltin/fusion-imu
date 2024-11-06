@@ -2,11 +2,14 @@
 // Created by Serdar on 4.11.2024.
 //
 
-#include <SPI.h>
-#include <Wire.h>
+
 #include "com/i2c.h"
 #include "config/config.h"
 #include "logger/serial_logger.h"
+
+#include <SPI.h>
+#include <Wire.h>
+#include <iomanip>
 
 
 I2C* I2C::instance = nullptr;
@@ -28,39 +31,50 @@ I2C::I2C(){
 
 void I2C::wireBegin() {
     Wire.begin(SDA_PIN, SCL_PIN);
-    SerialLog.Info("I2C Wire SDA_PIN=%d, SCL_PIN=%d", SDA_PIN, SCL_PIN);
+    SerialLog.Info("I2C Wire SDA_PIN=%d SCL_PIN=%d", SDA_PIN, SCL_PIN);
 }
 
+std::string I2C::int2Hex(int _address) {
+    std::stringstream ss;
+    ss << std::hex << _address;
+    return "0x"+ss.str();
+}
+
+int I2C::hex2Int(uint8_t _address) {
+    std::stringstream ss;
+    ss << std::hex << _address;
+    int address;
+    ss >> address;
+    return address;
+}
 
 void I2C::scan() {
     byte error, address;
-    int nDevices;
-    Serial.println("Scanning...");
-    nDevices = 0;
+    int nDevices = 0;
+    SerialLog.Info("I2C devices scanning...");
     for(address = 1; address < 127; address++ ) {
-        Wire.beginTransmission(address);
-        error = Wire.endTransmission();
+        std::string hex = int2Hex(address);
+        error = checkDevice(address);
         if (error == 0) {
-            Serial.print("I2C device found at address 0x");
-            if (address<16) {
-                Serial.print("0");
-            }
-            Serial.println(address,HEX);
+            SerialLog.Info("I2C device found at address %s", hex.c_str());
             nDevices++;
         }
         else if (error==4) {
-            Serial.print("Unknow error at address 0x");
-            if (address<16) {
-                Serial.print("0");
-            }
-            Serial.println(address,HEX);
+            SerialLog.Info("Unknown error at address %s",hex.c_str());
         }
     }
     if (nDevices == 0) {
-        Serial.println("No I2C devices found\n");
-    }
-    else {
-        Serial.println("done\n");
+        SerialLog.Info("No I2C devices found");
     }
 }
+
+int I2C::checkDevice(int _address) {
+    Wire.beginTransmission(_address);
+    int result = Wire.endTransmission();
+    SerialLog.Info("I2C Device checked. Device=%s Result=%s",
+                   int2Hex(_address).c_str(), (result == 0) ? "Available" : "Not Found!" );
+    return result;
+}
+
+
 

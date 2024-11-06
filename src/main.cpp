@@ -6,14 +6,14 @@
 #include "logger/serial_logger.h"
 #include "sensor/imu.h"
 
-
 void setup() {
     Serial.begin(BOUD_RATE);
+    SerialLog.Info("Serial Bound Rate=%d", BOUD_RATE);
     while (!Serial){
         delay(10);
     }
-    SerialLog.Info("Setup");
-    I2CI->scan();
+    SerialLog.Info("Serial initialized.");
+    I2CI;
     LcdI;
     IMUI;
 }

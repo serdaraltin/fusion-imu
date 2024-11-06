@@ -26,6 +26,7 @@
 //Sensor Configuration
 #define SENSOR_NAME "MPU6050"
 #define FIND_REPEAT true
+#define SENSOR_I2C 0x68
 
 
 #endif //FUSION_SENS_CONFIG_H
