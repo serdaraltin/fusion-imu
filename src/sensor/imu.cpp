@@ -5,8 +5,8 @@
 #include "sensor/imu.h"
 #include "logger/serial_logger.h"
 #include "config/config.h"
-#include "com/i2c.h"
-#include "convert/convert.h"
+#include "transmission//i2c.h"
+#include "conversion/convert.h"
 
 Adafruit_MPU6050 sensor;
 

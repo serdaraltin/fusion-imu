@@ -2,11 +2,11 @@
 #include <Wire.h>
 #include "config/config.h"
 #include "display/lcd.h"
-#include "com/i2c.h"
+#include "transmission//i2c.h"
 #include "logger/serial_logger.h"
 #include "sensor/imu.h"
 #include "device/device_manager.h"
-#include "convert/convert.h"
+#include "conversion/convert.h"
 
 void initialize(){
     Serial.begin(BOUD_RATE);

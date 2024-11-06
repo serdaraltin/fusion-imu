@@ -2,7 +2,7 @@
 // Created by Serdar on 6.11.2024.
 //
 
-#include "convert.h"
+#include "conversion/convert.h"
 #include <iomanip>
 
 Convert* Convert::instance = nullptr;
@@ -13,7 +13,6 @@ Convert *Convert::getInstance() {
     }
     return instance;
 }
-
 
 std::string Convert::int2Hex(int _address) {
     std::stringstream ss;
@@ -27,4 +26,8 @@ int Convert::hex2Int(uint8_t _address) {
     int address;
     ss >> address;
     return address;
+}
+
+Convert::Convert() {
+
 }

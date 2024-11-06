@@ -3,13 +3,13 @@
 //
 
 
-#include "com/i2c.h"
+#include "transmission//i2c.h"
 #include "config/config.h"
 #include "logger/serial_logger.h"
 
 #include <SPI.h>
 #include <Wire.h>
-#include "convert/convert.h"
+#include "conversion/convert.h"
 
 
 I2C* I2C::instance = nullptr;
@@ -33,7 +33,6 @@ void I2C::wireBegin() {
     Wire.begin(SDA_PIN, SCL_PIN);
     SerialLog.Info("I2C Wire SDA_PIN=%d SCL_PIN=%d", SDA_PIN, SCL_PIN);
 }
-
 
 void I2C::scan() {
     byte error, address;

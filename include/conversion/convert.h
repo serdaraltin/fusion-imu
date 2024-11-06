@@ -13,7 +13,7 @@ class Convert {
 private:
     static Convert *instance;
 public:
-    Convert() = default;
+    Convert();
     ~Convert() = default;
 
     static Convert *getInstance();
