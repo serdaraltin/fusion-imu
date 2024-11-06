@@ -20,7 +20,7 @@ void setup() {
     initialize();
     I2CI->scan();
     for(Device device : DeviceManagerI->getDeviceList()){
-        SerialLog.Warning(device.getName().c_str());
+        SerialLog.Info(device);
     }
 }
 
