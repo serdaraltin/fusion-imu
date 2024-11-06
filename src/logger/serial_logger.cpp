@@ -19,8 +19,11 @@ SerialLogger *SerialLogger::getInstance() {
 
 SerialLogger::SerialLogger() {
     setLevel(LOG_LEVEL);
-    SerialLog.Info("Serial Bound Rate=%d", BOUD_RATE);
-    SerialLog.Info("Serial Logger initialized.");
+    Logger::Log.Info("Serial Bound Rate=%d", BOUD_RATE);
+    while (!Serial){
+        delay(10);
+    }
+    Logger::Log.Info("Serial Logger initialized.");
 }
 
 std::optional<std::string> SerialLogger::log2String(Logger::Level level, const std::string &message) {
