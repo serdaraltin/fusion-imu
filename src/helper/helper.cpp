@@ -2,30 +2,30 @@
 // Created by Serdar on 6.11.2024.
 //
 
-#include "conversion/convert.h"
+#include "helper/hex.h"
 #include <iomanip>
 
-Convert* Convert::instance = nullptr;
+Hex* Hex::instance = nullptr;
 
 
-Convert::Convert() {
+Hex::Hex() {
 
 }
 
-Convert *Convert::getInstance() {
+Hex *Hex::getInstance() {
     if(instance == nullptr){
-        instance = new Convert();
+        instance = new Hex();
     }
     return instance;
 }
 
-std::string Convert::int2Hex(int _address) {
+std::string Hex::int2Hex(int _address) {
     std::stringstream ss;
     ss << std::hex << _address;
     return "0x"+ss.str();
 }
 
-int Convert::hex2Int(uint8_t _address) {
+int Hex::hex2Int(uint8_t _address) {
     std::stringstream ss;
     ss << std::hex << _address;
     int address;
@@ -33,7 +33,7 @@ int Convert::hex2Int(uint8_t _address) {
     return address;
 }
 
-std::string Convert::hex2String(uint8_t _address) {
+std::string Hex::hex2String(uint8_t _address) {
 
     return std::string();
 }

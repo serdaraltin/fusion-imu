@@ -1,0 +1,14 @@
+//
+// Created by Serdar on 7.11.2024.
+//
+
+#ifndef FUSION_SENS_JSON_H
+#define FUSION_SENS_JSON_H
+
+
+class json {
+
+};
+
+
+#endif //FUSION_SENS_JSON_H

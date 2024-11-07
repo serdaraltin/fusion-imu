@@ -3,13 +3,13 @@
 //
 
 
-#include "transmission//i2c.h"
+#include "comms/i2c.h"
 #include "config/config.h"
 #include "logger/serial_logger.h"
 
 #include <SPI.h>
 #include <Wire.h>
-#include "conversion/convert.h"
+#include "helper/hex.h"
 
 
 I2C* I2C::instance = nullptr;
@@ -39,7 +39,7 @@ void I2C::scan() {
     int nDevices = 0;
     SerialLog.Info("I2C devices scanning...");
     for(address = 1; address < 127; address++ ) {
-        std::string hex = ConvertI->int2Hex(address);
+        std::string hex = HexI->int2Hex(address);
         error = checkDevice(address);
         if (error == 0) {
             SerialLog.Info("I2C device found at address %s", hex.c_str());

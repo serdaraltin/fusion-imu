@@ -1,4 +1,4 @@
-#include "display/lcd.h"
+#include "device/display/lcd.h"
 #include "config/config.h"
 #include "logger/serial_logger.h"
 #include <SPI.h>

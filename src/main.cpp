@@ -1,16 +1,20 @@
 #include <SPI.h>
 #include <Wire.h>
+
+
 #include "config/config.h"
-#include "display/lcd.h"
-#include "transmission//i2c.h"
 #include "logger/serial_logger.h"
-#include "sensor/imu.h"
+
 #include "device/device_manager.h"
-#include "conversion/convert.h"
+#include "device/display/lcd.h"
+#include "device/sensor/imu.h"
+
+#include "comms/i2c.h"
+#include "helper/hex.h"
 
 void initialize(){
     Serial.begin(BOUD_RATE);
-    Convert::getInstance();
+    Hex::getInstance();
     SerialLogger::getInstance();
     DeviceManager::getInstance();
     I2C::getInstance();

@@ -3,7 +3,7 @@
 //
 
 #include "device/device.h"
-#include "conversion/convert.h"
+#include "helper//hex.h"
 #include <utility>
 
 Device::Device(std::string _name, uint8_t _addresses) :

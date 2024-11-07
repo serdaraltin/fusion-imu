@@ -2,13 +2,13 @@
 // Created by Serdar on 6.11.2024.
 //
 
-#ifndef FUSION_SENS_CONVERT_H
-#define FUSION_SENS_CONVERT_H
+#ifndef FUSION_SENS_HEX_H
+#define FUSION_SENS_HEX_H
 
 #include <string>
 
 /**
- * @file convert.h
+ * @file helper.h
  * @brief A utility class to perform various conversions, such as integer to hex and vice versa.
  *
  * This class provides static methods to convert between different formats, such as:
@@ -18,37 +18,37 @@
  *
  * Example usage:
  * ```cpp
- * std::string hexStr = Convert::int2Hex(255);
- * int intValue = Convert::hex2Int(0xFF);
+ * std::string hexStr = Hex::int2Hex(255);
+ * int intValue = Hex::hex2Int(0xFF);
  * ```
  */
-#define ConvertI Convert::getInstance()
+#define HexI Hex::getInstance()
 
-class Convert {
+class Hex {
 private:
-    static Convert *instance; ///< The static instance of the singleton
+    static Hex *instance; ///< The static instance of the singleton
 public:
     /**
-     * @brief Default constructor for the Convert class.
+     * @brief Default constructor for the Hex class.
      *
-     * Initializes the Convert class instance. This constructor is not intended to be used directly.
+     * Initializes the Hex class instance. This constructor is not intended to be used directly.
      */
-    Convert();
+    Hex();
 
     /**
-     * @brief Destructor for the Convert class.
+     * @brief Destructor for the Hex class.
      *
      * This destructor is default and does not perform additional operations.
      */
-    ~Convert() = default;
+    ~Hex() = default;
 
     /**
-     * @brief Retrieves the singleton instance of the Convert class.
-     * @return A pointer to the static instance of Convert.
+     * @brief Retrieves the singleton instance of the Hex class.
+     * @return A pointer to the static instance of Hex.
      *
-     * This method ensures that only one instance of Convert is used throughout the application.
+     * This method ensures that only one instance of Hex is used throughout the application.
      */
-    static Convert *getInstance();
+    static Hex *getInstance();
 
     /**
      * @brief Converts an integer to its hexadecimal string representation.
@@ -81,4 +81,4 @@ public:
     static std::string hex2String(uint8_t address);
 };
 
-#endif //FUSION_SENS_CONVERT_H
+#endif //FUSION_SENS_HEX_H

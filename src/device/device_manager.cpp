@@ -5,7 +5,7 @@
 #include "device/device_manager.h"
 #include "config/device_list.h"
 #include "logger/serial_logger.h"
-#include "conversion/convert.h"
+#include "helper//hex.h"
 #include <iostream>
 
 DeviceManager *DeviceManager::instance = nullptr;
