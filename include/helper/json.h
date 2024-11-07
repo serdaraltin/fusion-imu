@@ -6,7 +6,7 @@
 #define FUSION_SENS_JSON_H
 
 
-class json {
+class Json {
 
 };
 

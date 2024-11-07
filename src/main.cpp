@@ -1,7 +1,6 @@
 #include <SPI.h>
 #include <Wire.h>
 
-
 #include "config/config.h"
 #include "logger/serial_logger.h"
 
@@ -11,6 +10,7 @@
 
 #include "comms/i2c.h"
 #include "helper/hex.h"
+#include <ArduinoJson.h>
 
 void initialize(){
     Serial.begin(BOUD_RATE);
@@ -22,11 +22,27 @@ void initialize(){
     IMU::getInstance();
 }
 
+void test(){
+    Serial.begin(BOUD_RATE);
+    JsonDocument jsonDocument;
+
+    jsonDocument["sensor"] = "gps";
+    jsonDocument["time"] = 1234;
+
+    JsonArray data = jsonDocument["data"].to<JsonArray>();
+    data.add(50.0000);
+    data.add(34.444);
+
+    serializeJsonPretty(jsonDocument, Serial);
+
+    Serial.println();
+
+    //serializeJsonPretty(jsonDocument, Serial);
+}
 void setup() {
-    initialize();
-    for(const Device& device : DeviceManagerI->getDeviceList()){
-        SerialLog.Info(device);
-    }
+    //initialize();
+    test();
+
 }
 
 void loop() {
