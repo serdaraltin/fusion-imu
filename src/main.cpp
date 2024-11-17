@@ -7,6 +7,7 @@
 #include "device/device_manager.h"
 #include "device/display/lcd.h"
 #include "device/sensor/imu.h"
+#include <Arduino.h>
 
 #include "comms/i2c.h"
 #include "helper/hex.h"
