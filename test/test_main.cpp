@@ -2,35 +2,48 @@
 // Created by Serdar on 8.11.2024.
 //
 
+#include <gtest/gtest.h>
+// uncomment line below if you plan to use GMock
+#include <gmock/gmock.h>
+
+// TEST(...)
+// TEST_F(...)
+
+#if defined(ARDUINO)
 #include <Arduino.h>
-#include <unity.h>
-#include "../include/device/device.h"  // Adjust the path as necessary
 
-void test_device_name() {
-    Device device("TestDevice", 0x68);
-    TEST_ASSERT_EQUAL_STRING("TestDevice", device.getName().c_str());
+void setup()
+{
+    // should be the same value as for the `test_speed` option in "platformio.ini"
+    // default value is test_speed=115200
+    Serial.begin(115200);
+
+    ::testing::InitGoogleTest();
+    // if you plan to use GMock, replace the line above with
+    // ::testing::InitGoogleMock();
 }
 
-void test_device_address() {
-    Device device("TestDevice", 0x68);
-    TEST_ASSERT_EQUAL_UINT8(0x68, device.getAddress());
+void loop()
+{
+  // Run tests
+  if (RUN_ALL_TESTS())
+  ;
+
+  // sleep for 1 sec
+  delay(1000);
 }
 
-int runUnityTests(void) {
-    UNITY_BEGIN();
-    RUN_TEST(test_function_should_doBlahAndBlah);
-    RUN_TEST(test_function_should_doAlsoDoBlah);
-    return UNITY_END();
-}
+#else
+int main(int argc, char **argv)
+{
+    ::testing::InitGoogleTest(&argc, argv);
+    // if you plan to use GMock, replace the line above with
+    // ::testing::InitGoogleMock(&argc, argv);
 
-void setup() {
-    runUnityTests();
-}
+    if (RUN_ALL_TESTS())
+        ;
 
-void loop() {
-    // Empty loop
+    // Always return zero-code and allow PlatformIO to parse results
+    return 0;
 }
-
-void app_main() {
-    runUnityTests();
-}
+#endif
