@@ -39,6 +39,7 @@ void test(){
 
     //serializeJsonPretty(jsonDocument, Serial);
 }
+
 void setup() {
     //initialize();
     test();
