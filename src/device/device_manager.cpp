@@ -7,6 +7,7 @@
 #include "logger/serial_logger.h"
 #include "helper//hex.h"
 #include <iostream>
+#include <algorithm>
 
 DeviceManager *DeviceManager::instance = nullptr;
 
@@ -33,8 +34,10 @@ void DeviceManager::setDeviceList(const std::vector<Device> &_deviceList) {
 }
 
 bool DeviceManager::addDevice(const Device& _device) {
+    if(checkDevice(_device.getAddress()))
+        return false;
     deviceList.emplace_back(_device);
-    return false;
+    return true;
 }
 
 Device *DeviceManager::getDevice(const uint8_t _address) {
@@ -44,6 +47,27 @@ Device *DeviceManager::getDevice(const uint8_t _address) {
         }
     }
     return nullptr;
+}
+
+bool DeviceManager::checkDevice(uint8_t _deviceAddress) {
+
+    auto it = std::find_if(deviceList.begin(), deviceList.end(), [_deviceAddress](const Device& device){
+        return device.getAddress() == _deviceAddress;
+    });
+    if(it != deviceList.end())
+        return true;
+    return false;
+}
+
+bool DeviceManager::removeDevice(uint8_t deviceAddress) {
+    auto it = std::remove_if(deviceList.begin(), deviceList.end(),
+                             [deviceAddress] (const Device& device){
+                                 return device.getAddress() == deviceAddress;
+                             });
+    if(it == deviceList.end())
+        return false;
+    deviceList.erase(it, deviceList.end());
+    return true;
 }
 
 

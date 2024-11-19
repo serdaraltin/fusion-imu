@@ -87,6 +87,10 @@ public:
      * @return A pointer to the `Device` object with the specified address, or nullptr if no device is found.
      */
     Device *getDevice(const uint8_t address);
+
+    bool checkDevice(uint8_t deviceAddress);
+
+    bool removeDevice(uint8_t deviceAddress);
 };
 
 #endif //FUSION_SENS_DEVICE_MANAGER_H
