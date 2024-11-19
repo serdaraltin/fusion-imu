@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "project_dir": "/home/main/Project/fusion-motion-engine/src/fusion-sens",
+  "duration": 14.008102178573608,
+  "testcase_nums": 0,
+  "error_nums": 0,
+  "failure_nums": 0,
+  "skipped_nums": 0,
+  "test_suites": [
+    {
+      "env_name": "esp32-Test",
+      "test_name": "*",
+      "test_dir": "/home/main/Project/fusion-motion-engine/src/fusion-sens/test",
+      "status": "SKIPPED",
+      "duration": 14.008102178573608,
+      "timestamp": "2024-11-19T21:21:52",
+      "testcase_nums": 0,
+      "error_nums": 0,
+      "failure_nums": 0,
+      "skipped_nums": 0,
+      "test_cases": []
+    },
+    {
+      "env_name": "esp32-Build",
+      "test_name": "*",
+      "test_dir": "/home/main/Project/fusion-motion-engine/src/fusion-sens/test",
+      "status": "SKIPPED",
+      "duration": 0,
+      "timestamp": null,
+      "testcase_nums": 0,
+      "error_nums": 0,
+      "failure_nums": 0,
+      "skipped_nums": 0,
+      "test_cases": []
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "project_dir": "/home/main/Project/fusion-motion-engine/src/fusion-sens",
+  "duration": 10.639744997024536,
+  "testcase_nums": 1,
+  "error_nums": 0,
+  "failure_nums": 1,
+  "skipped_nums": 0,
+  "test_suites": [
+    {
+      "env_name": "esp32-Test",
+      "test_name": "*",
+      "test_dir": "/home/main/Project/fusion-motion-engine/src/fusion-sens/test",
+      "status": "FAILED",
+      "duration": 10.639744997024536,
+      "timestamp": "2024-11-19T21:21:28",
+      "testcase_nums": 1,
+      "error_nums": 0,
+      "failure_nums": 1,
+      "skipped_nums": 0,
+      "test_cases": [
+        {
+          "name": "DeviceTest.ImplicitConversionOperatortest_device.cpp:104:",
+          "status": "FAILED",
+          "message": "Failure",
+          "stdout": "[ RUN      ] DeviceTest.ImplicitConversionOperatortest_device.cpp:104: Failure\nExpected equality of these values:\n  deviceString\n    Which is: \"Device properties Name=StringDevicea Address=0x40 Parent Address=0x00\"\n  \"Device properties Name=StringDevice Address=0x40 Parent Address=0x00\"\n\n[  FAILED  ] DeviceTest.ImplicitConversionOperator (24 ms)",
+          "duration": 0,
+          "exception": null,
+          "source": {
+            "file": "[ RUN      ] DeviceTest.ImplicitConversionOperatortest_device.cpp",
+            "line": 104
+          }
+        }
+      ]
+    },
+    {
+      "env_name": "esp32-Build",
+      "test_name": "*",
+      "test_dir": "/home/main/Project/fusion-motion-engine/src/fusion-sens/test",
+      "status": "SKIPPED",
+      "duration": 0,
+      "timestamp": null,
+      "testcase_nums": 0,
+      "error_nums": 0,
+      "failure_nums": 0,
+      "skipped_nums": 0,
+      "test_cases": []
+    }
+  ]
+}
