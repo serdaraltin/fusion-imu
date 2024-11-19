@@ -4,8 +4,6 @@
 
 #ifndef FUSION_SENS_JSON_H
 #define FUSION_SENS_JSON_H
-#include <ArduinoJson.h>
-
 
 class Json {
 

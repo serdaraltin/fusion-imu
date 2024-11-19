@@ -1,0 +1,21 @@
+[submodule "lib/Adafruit_MPU6050"]
+	path = lib/Adafruit_MPU6050
+	url = https://github.com/adafruit/Adafruit_MPU6050
+[submodule "Adafruit_BMP085"]
+	path = lib/Adafruit_BMP085
+	url = https://github.com/adafruit/Adafruit-BMP085-Library
+[submodule "lib/Adafruit_SSD1306"]
+	path = lib/Adafruit_SSD1306
+	url = https://github.com/adafruit/Adafruit_SSD1306
+[submodule "lib/Adafruit_GFX"]
+	path = lib/Adafruit_GFX
+	url = https://github.com/adafruit/Adafruit-GFX-Library
+[submodule "lib/Adafruit_BusIO"]
+	path = lib/Adafruit_BusIO
+	url = https://github.com/adafruit/Adafruit_BusIO
+[submodule "lib/googletest"]
+	path = lib/googletest
+	url = https://github.com/google/googletest
+[submodule "lib/Adafruit_Sensor"]
+	path = lib/Adafruit_Sensor
+	url = https://github.com/adafruit/Adafruit_Sensor

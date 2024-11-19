@@ -11,7 +11,7 @@
 
 #include "comms/i2c.h"
 #include "helper/hex.h"
-#include <ArduinoJson.h>
+
 
 void initialize(){
     Serial.begin(BOUD_RATE);
@@ -25,20 +25,6 @@ void initialize(){
 
 void test(){
     Serial.begin(BOUD_RATE);
-    JsonDocument jsonDocument;
-
-    jsonDocument["sensor"] = "gps";
-    jsonDocument["time"] = 1234;
-
-    JsonArray data = jsonDocument["data"].to<JsonArray>();
-    data.add(50.0000);
-    data.add(34.444);
-
-    serializeJsonPretty(jsonDocument, Serial);
-
-    Serial.println();
-
-    //serializeJsonPretty(jsonDocument, Serial);
 }
 void setup() {
     //initialize();
