@@ -61,6 +61,7 @@ public:
      */
     [[nodiscard]] const std::string &getName() const;
 
+
     /**
      * @brief Sets the name of the device.
      *
