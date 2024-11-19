@@ -26,6 +26,7 @@ void initialize(){
 void test(){
     Serial.begin(BOUD_RATE);
 }
+
 void setup() {
     //initialize();
     test();
