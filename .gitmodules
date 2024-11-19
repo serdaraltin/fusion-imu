@@ -22,3 +22,6 @@
 [submodule "lib/Adafruit_BMP085"]
 	path = lib/Adafruit_BMP085
 	url = https://github.com/adafruit/Adafruit-BMP085-Library
+[submodule "lib/ArduinoJson"]
+	path = lib/ArduinoJson
+	url = https://github.com/bblanchon/ArduinoJson
