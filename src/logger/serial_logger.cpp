@@ -8,7 +8,6 @@
 #include <string>
 
 
-
 SerialLogger *SerialLogger::instance = nullptr;
 
 SerialLogger *SerialLogger::getInstance() {

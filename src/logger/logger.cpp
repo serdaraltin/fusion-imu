@@ -46,10 +46,11 @@ std::string Logger::getLevelString(Logger::Level level) {
 
 std::optional<std::string> Logger::log2String(Logger::Level level, const std::string &message) {
     std::stringstream output;
+    if(level > level_)
+        return output.str();
     output << "[" << APP_NAME << "] [" << getLevelString(level) << "] " << message;
     return output.str();
 }
-
 
 std::string Logger::LogLevel::argsFormat(const char *message, va_list args) {
     char buffer[256];
@@ -57,7 +58,6 @@ std::string Logger::LogLevel::argsFormat(const char *message, va_list args) {
     return buffer;
 }
 
-//TODO will fill
 void Logger::LogLevel::None(const char *message, ...) {
     va_list args;
     va_start(args, message);
@@ -67,7 +67,6 @@ void Logger::LogLevel::None(const char *message, ...) {
     logger_->log2String(Level::None, formattedMessage);
 }
 
-//TODO will fill
 void Logger::LogLevel::Error(const char *message, ...) {
     va_list args;
     va_start(args, message);
@@ -77,7 +76,6 @@ void Logger::LogLevel::Error(const char *message, ...) {
     logger_->log2String(Level::Error, formattedMessage);
 }
 
-//TODO will fill
 void Logger::LogLevel::Warning(const char *message, ...) {
     va_list args;
     va_start(args, message);
@@ -87,7 +85,6 @@ void Logger::LogLevel::Warning(const char *message, ...) {
     logger_->log2String(Level::Warning, formattedMessage);
 }
 
-//TODO will fill
 void Logger::LogLevel::Debug(const char *message, ...) {
     va_list args;
     va_start(args, message);
@@ -97,7 +94,6 @@ void Logger::LogLevel::Debug(const char *message, ...) {
     logger_->log2String(Level::Debug, formattedMessage);
 }
 
-//TODO will fill
 void Logger::LogLevel::Info(const char *message, ...) {
     va_list args;
     va_start(args, message);
