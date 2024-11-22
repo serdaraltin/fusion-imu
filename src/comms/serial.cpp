@@ -5,3 +5,4 @@
 #include "comms/serial.h"
 
 
+Serial::Serial() = default;
