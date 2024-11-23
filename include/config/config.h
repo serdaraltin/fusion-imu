@@ -28,7 +28,7 @@
  *
  * This defines the log level for the application. In this case, it is set to "Info".
  */
-#define LOG_LEVEL Info
+#define LOG_LEVEL Debug
 
 // Serial Configuration ============================================
 
