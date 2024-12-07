@@ -35,7 +35,7 @@ void I2C::wireBegin() {
 }
 
 void I2C::scan() {
-    byte error, address;
+    int error, address;
     int nDevices = 0;
     SerialLog.Info("I2C devices scanning...");
     for(address = 1; address < 127; address++ ) {

@@ -105,7 +105,7 @@ public:
      *
      * This method allows for custom formatting of log messages.
      */
-    virtual std::optional<std::string> log2String(Level level, const std::string &message);
+    virtual std::string log2String(Level level, const std::string &message);
 
     /**
      * @class LogLevel

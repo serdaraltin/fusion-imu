@@ -44,7 +44,7 @@ std::string Logger::getLevelString(Logger::Level level) {
     }
 }
 
-std::optional<std::string> Logger::log2String(Logger::Level level, const std::string &message) {
+std::string Logger::log2String(Logger::Level level, const std::string &message) {
     std::stringstream output;
     if(level > level_)
         return output.str();

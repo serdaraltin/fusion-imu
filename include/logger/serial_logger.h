@@ -74,7 +74,7 @@ public:
      * This method overrides the `log2String` method from the `Logger` class.
      * It formats the log message and prepares it for serial output.
      */
-    std::optional<std::string> log2String(Level level, const std::string &message) override;
+    std::string log2String(Level level, const std::string &message) override;
 
 };
 
