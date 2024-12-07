@@ -3,19 +3,37 @@
 //
 
 #include "comms/wifi_manager.h"
-#include <Esp8
 
-WiFiManager *WiFiManager::instance = nullptr;
+WiFiManager* WiFiManager::instance = nullptr;
 
+WiFiManager::~WiFiManager() = default;
+
+WiFiManager::WiFiManager() = default;
 
 WiFiManager *WiFiManager::getInstance() {
-    if(instance == nullptr){
+    if(instance == nullptr)
         instance = new WiFiManager();
-    }
     return instance;
 }
 
-static std::vector<WiFiInfo> scanNetworks(){
-    std::vector<WiFiInfo> networks;
+void WiFiManager::init() {
 
 }
+
+std::vector <WiFiInfo> WiFiManager::scanNetworks() {
+    return std::vector<WiFiInfo>();
+}
+
+bool WiFiManager::connectToNetwork(const std::string &ssid, const std::string &password) {
+    return false;
+}
+
+WiFiInfo WiFiManager::getCurrentNetworkInfo() const {
+    return WiFiInfo();
+}
+
+std::string WiFiManager::getIpAddress() const {
+    return std::string();
+}
+
+
