@@ -3,7 +3,7 @@
 //
 
 #include "helper/hex.h"
-#include <iomanip>
+#include <sstream>
 
 Hex* Hex::instance = nullptr;
 

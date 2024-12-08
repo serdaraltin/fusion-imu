@@ -5,6 +5,7 @@
 #include "logger/logger.h"
 #include "config/config.h"
 #include <sstream>
+#include <cstdarg>
 
 Logger *Logger::instance = nullptr;
 //Logger::LogLevel *Log;

@@ -6,6 +6,7 @@
 #include "config/config.h"
 #include <SPI.h>
 #include <string>
+#include <Arduino.h>
 
 
 SerialLogger *SerialLogger::instance = nullptr;
