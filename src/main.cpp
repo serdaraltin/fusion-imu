@@ -27,11 +27,9 @@ void test(){
     Serial.begin(BOUD_RATE);
 }
 
-
-
 #ifndef  UNIT_TEST
 void setup() {
-    //initialize();
+    initialize();
     test();
 
 }

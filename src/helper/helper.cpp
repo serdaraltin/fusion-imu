@@ -35,5 +35,5 @@ int Hex::hex2Int(uint8_t _address) {
 
 std::string Hex::hex2String(uint8_t _address) {
 
-    return std::string();
+    return "";
 }
