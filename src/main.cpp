@@ -1,24 +1,20 @@
+#include <SPI.h>
+#include <Wire.h>
+
 #include "config/config.h"
 #include "logger/serial_logger.h"
+
 #include "device/device_manager.h"
 #include "device/display/lcd.h"
 #include "device/sensor/imu.h"
+#include <Arduino.h>
+
 #include "comms/i2c.h"
 #include "helper/hex.h"
 
-extern "C"{
-    #include <string>
-    #include "freertos/FreeRTOS.h"
-    #include "freertos/task.h"
-    #include "esp_log.h"
-}
-
-static const char *TAG = "main";
 
 void initialize(){
-#ifdef FRAMEWORK_ARDUINO
-    //Serial.begin(BOUD_RATE);
-#endif
+    Serial.begin(BOUD_RATE);
     Hex::getInstance();
     SerialLogger::getInstance();
     DeviceManager::getInstance();
@@ -28,28 +24,20 @@ void initialize(){
 }
 
 void test(){
-    ESP_LOGI(TAG, "I2C scan initializing...");
-    I2CI->scan();
+    Serial.begin(BOUD_RATE);
 }
 
+
+
 #ifndef  UNIT_TEST
-#ifdef FRAMEWORK_ARDUINO
 void setup() {
     //initialize();
+    test();
+
 }
 
 void loop() {
+
     delay(5000);
 }
 #endif
-#endif
-
-void app_main(){
-    initialize();
-
-    while (true){
-        test();
-        vTaskDelay(pdMS_TO_TICKS(5000));
-    }
-
-}
