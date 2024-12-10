@@ -56,7 +56,7 @@
  *
  * This defines the pin used for SDA (Serial Data) communication in I2C, set to pin 4.
  */
-#define SDA_PIN 21
+#define SDA_PIN 4
 
 /**
  * @def SCL_PIN
@@ -64,7 +64,7 @@
  *
  * This defines the pin used for SCL (Serial Clock) communication in I2C, set to pin 5.
  */
-#define SCL_PIN 22
+#define SCL_PIN 5
 
 // WIFI Configuration ============================================
 
